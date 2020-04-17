@@ -16,5 +16,13 @@ class Directory extends React.Component {
 				id: 3,
 			},
 		],
-	};
+    };
+    
+    render(){
+        return(
+            <div className='directory-menu'>
+            {this.state.sections.map(({title}) =>()};
+            </div>
+        )
+    }
 }
