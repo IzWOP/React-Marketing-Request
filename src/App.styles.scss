@@ -1,0 +1,17 @@
+@import url('https://use.typekit.net/pjo1cyw.css');
+
+//font stuff
+%aktiv_grotesk {
+	font-family: 'Aktiv Grotesk', sans-serif;
+}
+
+%helvetica {
+	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+		Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	@extend %helvetica, %aktiv_grotesk;
+}
