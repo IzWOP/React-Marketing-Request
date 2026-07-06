@@ -6,7 +6,7 @@ const MenuItem = ({ title, subtitle, background }) => {
 	return (
 		<Link
 			className='menuItem'
-			to={`${title}`}
+			to={`/${title}`}
 			style={{ backgroundImage: `url(${background})` }}>
 			<div className='menuOption'>
 				<div className='text-area'>

@@ -3,9 +3,8 @@ import MenuItem from '../menu-item/menu-item';
 import './directory.styles.scss';
 import { Link } from 'react-router-dom';
 
-class Directory extends React.Component {
-	state = {
-		sections: [
+const Directory = () => {
+	const sections = [
 			{
 				subtitle: 'I need',
 				title: 'Design',
@@ -26,29 +25,26 @@ class Directory extends React.Component {
 				id: 3,
 				background:
 					'https://res.cloudinary.com/ipcmobile/image/upload/v1565388733/landing-pages/marketing-request-portal/event.jpg',
-			},
-		],
-	};
+		},
+	];
 
-	render() {
-		return (
-			<div className='directory-menu'>
-				<Link className='logo' to='ipcmobile.com'>
-					<img
-						alt={'Infinte Peripherals logo'}
-						src='https://res.cloudinary.com/ipcmobile/image/upload/v1586296794/logos/infinite-peripherals-logo.svg'
-					/>
-				</Link>
-				{this.state.sections.map(({ title, subtitle, id, background }) => (
-					<MenuItem
-						key={id}
-						title={title}
-						subtitle={subtitle}
-						background={background}
-					/>
-				))}
-			</div>
-		);
-	}
-}
+	return (
+		<div className='directory-menu'>
+			<Link className='logo' to='ipcmobile.com'>
+				<img
+					alt={'Infinte Peripherals logo'}
+					src='https://res.cloudinary.com/ipcmobile/image/upload/v1586296794/logos/infinite-peripherals-logo.svg'
+				/>
+			</Link>
+			{sections.map(({ title, subtitle, id, background }) => (
+				<MenuItem
+					key={id}
+					title={title}
+					subtitle={subtitle}
+					background={background}
+				/>
+			))}
+		</div>
+	);
+};
 export default Directory;
