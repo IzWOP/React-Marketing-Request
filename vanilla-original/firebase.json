@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "public",
+     "rewrites": [
+       {
+         "source": "/api/v1/auth/verify",
+         "function": "pw_verify"
+       },
+        {
+         "source": "/api/v1/auth/submitKey",
+         "function": "pw_verify"
+       }
+      ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+     "cleanUrls": true,
+     "trailingSlash": false
+  }
+}

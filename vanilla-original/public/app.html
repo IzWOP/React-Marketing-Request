@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="theme-color" content="#000000">
+      <link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico" />
+      <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" />
+      <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" />
+      <link rel="icon" type="image/png" href="/images/icons/android-chrome-192x192.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/android-chrome-192x192.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/android-chrome-192x192.png">
+      <link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon.png">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="/public/lodash.js"></script>
+
+    <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS-->
+    <link href="css/build.css" rel="stylesheet">
+
+    <!--Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://use.typekit.net/vcs3wfi.css" rel="stylesheet">
+    <title>Marketing Request Portal</title>
+</head>
+
+<body>
+    <form id="eventForm1">
+        <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content background">
+                    <div class="modal-header">
+                        <h5 class=" " id="">Enter Your Contact Info</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="field">
+                            <input type="text" name="Requester Name" id="firstandLastName"
+                                placeholder="Mr. Incredible">
+                            <label for="firstandLastName">Your first and last name</label>
+                        </div>
+                        <div class="field">
+                            <input type="email" name="Email Address" id="emailAddy" placeholder="FirstLast@ipcmobile.com">
+                            <label for="emailAddy">Email Address</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="nameButton" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="intro-sec" id="introsec">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 p-0 eventcard">
+                        <div id="events" class="overlay card">
+                            Events
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-0 designcard">
+                        <div id="design" class="overlay card">
+                            Design
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-0 contentcard">
+                        <div class="overlay card" id="content">
+                            Content
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="eventsec" id="eventSec">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="25" id='eventBar' aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
+            <div class="container sideContainer " id="eventCont1">
+                <div class="row justify-content-end sideRow" id='eventRow1'>
+                    <div class="col-md-7 inputCol">
+                        <fieldset>
+                            <h3 class="formTitle" id='eventsTitle'>Event Section</h3>
+                            <div class="field">
+                                <input type="text" name='Event Name' id='eventName' placeholder=" FTE 2020">
+                                <label for="eventName" class="">Event Name</label>
+                            </div>
+                            <label class="text-left dateLabel" for="eventdate">Event Date</label>
+                            <input type="text" class="datepicker" name="Event Date" id='eventdate' placeholder="Not Tomorrow">
+
+
+                            <div class="field">
+                                <input type="text" name="Event Size" id="eventSize" placeholder=" 5000">
+                                <label for="eventSize">Event Size</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" name="Booth Number" id='boothNumber' placeholder=" A684">
+                                <label for="boothNumber">Booth Number</label>
+                            </div>
+                        </fieldset>
+                        <div class="row buttonSplit justify-content-center">
+                            <button class="col-5 btn btn-primary" id="eventCont1Back">Back</button>
+                            <button class="col-5 btn btn-primary" id="ef1Next">Next</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="eventCont2">
+                <div class="row justify-content-center  optionsThreeRow1 si" id="eventRow2">
+                    <div class="col-md-8 optionsThree choicesHeight">
+                        <div class="col optionsThreeRow" id="optionsThreeRow">
+                            <h3 class="floatTitle">Select Type of Event Supplies</h3>
+                            <div class="row twoFer">
+                                <div class="col-md-4 p-0 optionOne" id="Promotional">Promotional</div>
+                                <div class="col-md-4 p-0 optionTwo" id="Literature">Literature</div>
+                                <div class="col-md-4 p-0 optionThree" id="Booth Supplies">Booth <br />Supplies</div>
+                            </div>
+                            <div class="row buttonSplit">
+                                <button class="col-md-5 btn btn-primary" id="eventThreeSelection">Back</button>
+                                <button class="col-5 btn btn-primary hide" id="">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container checkboxSection" id="eventCont3">
+                <div class="row justify-content-center optionsThreeRow1">
+                    <div class="col-md-8 optionsThree spacingOptions">
+                        <div class="row optionsThreeRow justify-content-center">
+                            <div class="col promo" id="promo">
+                                <h3 class="formTitle">Promotional Items</h3>
+                                <p>Input the quantity of each product you would like for each.<br />
+                                    Please note that marketing inventory is limited so not everything will be available.
+                                </p>
+                                <!-- <div class="row checkboxSplit"> -->
+                                <!-- <div class="col checkboxList"> -->
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Pens:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Pens" min="0" value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Notebooks:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="notebooks" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- </div> -->
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Frisbees:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Frisbees" min="0" value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Camera covers:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Camera Covers" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Healthcare Pens:
+                                            </div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Healthcare Pens" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Socks:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Footballs" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Battery Packs:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Battery Packs" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Tote Bags:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Tote Bags" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Usb Drives:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="USB drives" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col col-md-7 qty-title">Post It Notes:</div>
+                                            <div class="col qty--btns">
+                                                <button class="qtyBtn subBtn">-</button>
+                                                <input type="number" class="numInput" name="Post It noes" min="0"
+                                                    value='0'>
+                                                <button class="qtyBtn addBtn">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row buttonSplit">
+                                    <button class="col-5 btn btn-primary" id="promoBack">Back</button>
+                                    <button id="promoNext" class="col-5 btn btn-primary" value="Next">Next</button>
+                                </div>
+                            </div>
+                            <div class=" col print" id="lit">
+                                <h3 class="formTitle">Literature Materials</h3>
+                                <p>Input the quantity of each literature you would need for the event<br />
+                                    Please note that marketing inventory is limited, so not everything will be
+                                    available.
+                                </p>
+                                <div class="row checkboxSplit">
+                                    <div class="col-md-6 checkboxList center">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Imperea Sheet:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Imperea Sheet"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Healthcare Brochure:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Healthcare Brochure"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Linea Pro 7:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="MP Printer
+                                    Line" min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Scanning Brochure:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput"
+                                                            name="Scanning Brochure min=" 0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- enter Other field if this is selected -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 checkboxList center">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Connection Services:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Connection Services"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Infinea X Sheets:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Infinea X Sheets"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Product Specs:</div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Product Specs"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Other:</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <input type="text" class="col otherInput" id='printOther'
+                                                        name="Print Other">
+                                                    <div class="col qty--btns otherBtn">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Other" min="0"
+                                                            value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row buttonsplit specialBtn">
+                                    <button class="col-5 btn btn-primary" id="litBack">Back</button>
+                                    <button class="col-5 btn btn-primary" id="litNext">Next</button>
+                                </div>
+                            </div>
+                            <div class="col booth" id="boothDiv">
+                                <h3 class="formTitle">Booth Materials</h3>
+                                <p>Input the quantity of each product you would like for each.<br />
+                                    Please note that marketing inventory is limited so not everything will be available.
+                                </p>
+                                <div class="row checkboxSplit">
+                                    <div class="col-md-6 checkboxList">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Table Cloth:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Table Cloth" min="0"
+                                                            value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Pod Display w/
+                                                        Ingage:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Pod Display" min="0"
+                                                            value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">Surge Protector:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Surge Protector"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 checkboxList">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">
+                                                        Extension Cords:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input type="number" class="numInput" name="Extension Cords"
+                                                            min="0" value='0'>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>Product Acrylics:</h4>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">
+                                                        Large:
+                                                    </div>
+                                                    <div class="col qty--btns">
+
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input name="Product Acrylics Large" type="number" value=0>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col col-md-7 qty-title">
+                                                        Small:
+                                                    </div>
+                                                    <div class="col qty--btns">
+                                                        <button class="qtyBtn subBtn">-</button>
+                                                        <input name="Product Acrylics Large" type="number" value=0>
+                                                        <button class="qtyBtn addBtn">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row buttonSplit">
+                                    <button class="col-5 btn btn-primary" id="boothBack">Back</button>
+                                    <button class="col-5 btn btn-primary" id="boothNext">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer eventSubmit" id="eventCont4">
+                <div class="row justify-content-end sideRow">
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle">Lastly, where is everything going?</h3>
+                        <div class="field">
+                            <input type="text" name='Shipping Address' id="Shipping Address"
+                                placeholder="17681 Mitchell N, Irvine, CA 92614">
+                            <label for="Shipping Address">Shipping Address</label>
+                        </div>
+                        <label class="text-left dateLabel" for="Deadline">Delivery Date</label>
+                        <input type="text" class="datepicker" id="eventDeliveryDate" name="eventDeliveryDate">
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="eventSubmitBack">Back</button>
+                            <input type="Submit" id="eventSubmit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="eventSubmit4Load">
+                            <div class="spinner-border" id='eventSubmit4Loading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="eventSubmit4Error">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- add Text Box to the end of events section -->
+        <section class="designsec" id="designSec">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="designBar" aria-valuenow="25" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
+            <div class="container" id="designCont1">
+                <div class="row justify-content-center optionsThreeRow1 si">
+
+                    <div class="col-md-10 optionsThree choicesHeight">
+                        <!-- is this fixing a previous design? -->
+                        <div class="optionsThreeRow" id="twoChoices">
+                            <h3 class="floatTitle">Is this an update to an
+                                existing project?</h3>
+                            <div class="row twoFer">
+                                <div class="col-md-6 p-0 optionOne" id="optionOne">Yes</div>
+                                <div class="col-md-6 p-0 optionTwo" id="optionTwo">No</div>
+                            </div>
+                            <div class="row buttonSplit">
+                                <button class="col-md-5 btn btn-primary" id="designTwoChoicesBack">Back</button>
+                                <button class="col-md-5 btn hide" id=""></button>
+                            </div>
+                            <!-- add back button -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="designCont2">
+                <div class="row justify-content-end sideRow" id='existingRow1'>
+                    <div class="col-md-7  inputCol">
+                        <h3 class="floatTitle">Enter project information to update</h3>
+                        <div class="field">
+                            <input type="text" class="projectName" id='projectUpdateName' name="Design Project"
+                                placeholder="FTE 2020">
+                            <label for="projectUpdateName">Project Name</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="" id='designUpdateDescription' name="Design Description"
+                                placeholder="It's big">
+                            <label for="designUpdateDescription">Description</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Design Link" class="" id='dUpdateLink' placeholder="Myspace.com">
+                            <label for="dUpdateLink">Link</label>
+                        </div>
+                        <label class="text-left dateLabel" for="updateDesignDeliveryDate">Deadline</label>
+                        <input type="text" class="datepicker" name="updateDesignDeliveryDate" id='updateDesignDeliveryDate'
+                            placeholder="Not Tomorrow">
+                        <label class="text-left dateLabel" for="">Upload Example:</label>
+                        <input type="file" class="file" id='designFile' name="Design File" placeholder="selfie.jpg">
+
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="updatedDesignBack">Back</button>
+                            <input type="submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="designSubmit2Load">
+                            <div class="spinner-border" id='designSubmit2Loading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="designSubmit2Error">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="designCont3">
+                <div class="row justify-content-end sideRow" id='existingRow1'>
+                    <div class="col-md-7  inputCol">
+
+                        <h3 class="floatTitle">Project Purpose</h3>
+                        <p>Please, tell us a little about the project.</p>
+                        <div class="field">
+                            <input type="text" id='designProjectName' name="Design Name" placeholder="Maglinq Ad">
+                            <label for="designProjectName">Project Name</label>
+                        </div>
+                        <div class="field">
+                            <textarea name="Design desc" id="designDesc" cols="30" rows="4"
+                                placeholder="Describe the project"></textarea>
+                        </div>
+                        <div class="field">
+                            <textarea name="Design Goal" id="designGoal" cols="30" rows="4"
+                                placeholder="What is the goal you're trying to achieve?"></textarea>
+                        </div>
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="dCont3Back">Back</button>
+                            <button class="col-5 btn btn-primary" id="designCont3Next">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="designCont4">
+                <div class="row justify-content-center optionsThreeRow1">
+                    <div class="col-md-8 optionsThree choicesHeight">
+                        <!-- is this fixing a previous design? -->
+                        <div class="optionsThreeRow" id="designType">
+                            <h3 class="floatTitle">Type of design</h3>
+                            <div class="row twoFer">
+                                <div class="col-md-6 p-0 optionOne" name='print' id="print">Print</div>
+                                <div class="col-md-6 p-0 optionTwo" name='digital' id="digital">Digital</div>
+                            </div>
+                            <div class="row buttonSplit">
+                                <button class="col-md-5 btn btn-primary" id="designTypeBack">Back</button>
+                                <button class="col-5 btn hide" id=""></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container checkboxSection" id="designCont5">
+                <div class="row justify-content-center optionsThreeRow1">
+                    <div class="col-md-8 optionsThree spacingOptions">
+                        <div class="row optionsThreeRow justify-content-center">
+                            <div class="promo" id="digitalCheckbox">
+                                <h3 class="floatTitle">Digital Design Format</h3>
+                                <div class="row checkboxSplit">
+
+                                    <div class="col-md-6 checkboxList">
+                                        <input type="checkbox" name="Ad" value="Ad">
+                                        <label for="Ad">Ad</label><br />
+                                        <input type="checkbox" name="Landing Page" value="Landing Page">
+                                        <label for="Landing Page">Landing Page</label><br />
+                                        <input type="checkbox" name="Socia Media Post" value="Social Media Post">
+                                        <label for="Social Media Post">Social
+                                            Media Post</label><br />
+                                        <input type="checkbox" name="Spec Sheet" value="Spec Sheet">
+                                        <label for="Spec Sheet">Spec Sheet</label><br />
+                                        <input type="checkbox" name="Sales Enablement" value="Sales Enablement">
+                                        <label for="Sales Enablement">Sales Enablement</label><br />
+
+                                    </div>
+                                    <div class="col-md-6 checkboxList">
+                                        <h5>Dimensions:</h5>
+                                        <div class="field">
+                                            <label for="Width1">Width</label>
+                                            <input type="text" name="Width" id="Width1" placeholder="Width:">
+                                        </div>
+                                        <div class="field">
+                                            <label for="height1">Height</label>
+                                            <input type="text" name="Height" class="height1" placeholder="Height:">
+                                        </div>
+                                        <label class="dateLabel" for="designEx">Upload an example:</label>
+                                        <input type="file" name="Design Example" id="designEx">
+
+                                    </div>
+                                    <textarea name="digitalText" id="designOther1" cols="30" rows="2"
+                                        placeholder="Other:"></textarea>
+                                </div>
+                                <div class="row buttonSplit">
+                                    <button class="col-5 btn btn-primary" id="digitalCheckBack">Back</button>
+                                    <button class="col-5 btn btn-primary" id="digitalCheckNext">Next</button>
+                                </div>
+
+                            </div>
+                            <div class="print" id="printCheckBox">
+                                <h3 class="floatTitle">Print Design Format</h3>
+                                <div class="row checkboxSplit">
+
+                                    <div class="col-md-6 checkboxList">
+                                        <input type="checkbox" name="Print" value="Ad">
+                                        <label for="Ad">Ad</label><br />
+                                        <input type="checkbox" name="Print" value="Booth Graphic">
+                                        <label for="Booth Graphic">Booth Graphic</label><br />
+                                        <input type="checkbox" name="Print" value="Brochure">
+                                        <label for="Brochure">Brochure</label><br />
+                                        <input type="checkbox" name="Print" value="Literature">
+                                        <label for="Literature">Literature</label><br />
+                                        <input type="checkbox" name="Print" value="Banner">
+                                        <label for="Banner">Banner</label><br />
+
+                                    </div>
+                                    <div class="col-md-6 checkboxList">
+                                        <h5>Dimensions:</h5>
+                                        <div class="field">
+                                            <label for="Width2">Width</label>
+                                            <input type="text" name="Width" id="Width2" placeholder="Width:">
+                                        </div>
+                                        <div class="field">
+                                            <label for="Height2">Height</label>
+                                            <input type="text" name="Height" id="Height2" placeholder="Height:">
+                                        </div>
+                                        <label for="designEx">Upload Example:</label>
+                                        <input type="file" name="designFileExample" id="designFileExample">
+                                    </div>
+                                    <textarea name="printText" class="other" id="designOther2" cols="30" rows="2"
+                                        placeholder="Other:"></textarea>
+                                </div>
+                                <div class="row buttonSplit">
+                                    <button class="col-5 btn btn-primary" id="printCheckBack">Back</button>
+                                    <button class="col-5 btn btn-primary" id="printCheckNext">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="designCont6">
+                <div class="row justify-content-end sideRow" id='existingRow1'>
+                    <div class="col-md-7 inputCol">
+                        <h3 class="formTitle" id='existingTitle'>Summary</h3>
+                        <h6>To better understand, we have a few more questions.</h6>
+                        <div class="field">
+                            <input type="text" name="Industry Type" id='industry' placeholder="Health">
+                            <label for="industry" class="">Industry</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Highlighted Products" id='highlighted' placeholder="Infinea X">
+                            <label for="highlighted" class="">Highlighted Products:</label>
+                        </div>
+                        <textarea name="Design Additonal Comments" id="dComments" cols="30" rows="4"
+                            placeholder="Additional Comments.."></textarea>
+
+
+                        <label class="text-left dateLabel" for="">Delivery Date</label>
+                        <input type="text" class="datepicker" id="designDeliveryDateSummary"
+                            name="designDeliveryDateSummary" placeholder="Not Tomorrow">
+
+
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="designBackSubmit">Back</button>
+                            <input type="submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="designSubmit6Load">
+                            <div class="spinner-border" id='designSubmit6Loading'  role="status">
+                                <span class="sr-only" >Loading...</span>
+                            </div>
+                            <span class="submitError" id="designSubmit6Error">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="writingsec " id="writingSec">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" id="writeBar" aria-valuenow="25" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
+            <div class="container" id="writeCont1">
+                <div class="row justify-content-center optionsThreeRow1" id="eventRow2">
+                    <div class="col-md-8 optionsThree choicesHeight">
+                        <div class="optionsThreeRow" id="hexCont">
+                            <div class="row twoFer">
+                                <div class="col-md-6 p-0 section3" id="optionOne">
+                                    <div class="content" id="Blog">Blog</div>
+                                    <div class="content" id="Ebook">Ebook</div>
+                                    <div class="content" id="whitePaper">White Paper</div>
+                                </div>
+                                <div class="col-md-6 p-0 optionTwo section3" id="optionTwo">
+                                    <div class="content" id="CaseStudy">Case Study</div>
+                                    <div class="content" id="Edits">Edits</div>
+                                    <div class="content" id="Other">Other</div>
+                                </div>
+                            </div>
+                            <div class="row buttonSplit">
+                                <button class="col-md-5 btn btn-primary " id="hexContBack">Back</button>
+                                <button class="col-md-5 btn hide" id=""></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont2">
+                <div class="row justify-content-end sideRow">
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='blogTitle'>Blog</h3>
+                        <p>In order for us to help, we will need you to provide the following information.</p>
+                        <div class="field">
+                            <input type="text" class="projectName" id='blogGoal' placeholder="Amazing Article"
+                                name="Blog Goal">
+                            <label for="blogGoal" class="">Goal</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="" id="blog topic" name="Blog Topic" placeholder="Infinea">
+                            <label for="Blog topic">Topic/Theme</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="" id='blogIndustry' placeholder="Health">
+                            <label for="blogIndustry">Industry</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="" id='Highlighted' placeholder="Maglinq">
+                            <label for="Highlighted">Highlighted Products</label>
+                        </div>
+                        <label class="text-left dateLabel" for="">Delivery Date:</label>
+                        <input type="text" class="datepicker" id="blogDeliveryDate" name="blogDeliveryDate" id=''
+                            placeholder="Not Tomorrow">
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="blogBack">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="blogSubmitLoad">
+                            <div class="spinner-border" id='blogSubmitLoading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="blogSubmitError">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont3">
+                <div class="row justify-content-end sideRow">
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='eventsTitle'>EBook</h3>
+                        <p>An ebook is a digital document that showcases our company’s credibility and thought
+                            leadership on
+                            a
+                            particular subject. An ebook should position us as an expert in our field and give us a
+                            competitive edge.
+                        </p>
+                        <p>In order for us to help, we will need you to answer the following questions.
+                            Please be specific in your answers.
+                        </p>
+                        <div class="field">
+                            <input type="text" name="Ebook Topic" id='eBooktopic' placeholder="Infinea">
+                            <label for="eBooktopic" class="">What is the topic?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Ebook Solved Problem" id="ebookProblem" placeholder="Life">
+                            <label for="ebookProblem">What problem does this solve?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Ebook Quotes" id='ebookQuote'
+                                placeholder="Imagination is more important than knowledge.-A.E.">
+                            <label for="ebookQuote">Do you have any quotes or testimonials to support the topic or
+                                solution?</label>
+                        </div>
+                        <label class="text-left dateLabel" for="">Delivery Date:</label>
+                        <input type="text" class="datepicker" id="eBookDelivery" name="eBookDelivery"
+                            placeholder="Not Tomorrow">
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="eBookBack">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="eBookSubmitLoad">
+                            <div class="spinner-border" id='eBookSubmitLoading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="eBookSubmitError">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont4">
+                <div class="row justify-content-end sideRow" id='wpRow1'>
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='wpTitle'>White Paper</h3>
+                        <p>A white paper is an authoritative document is intended to educate the reader on a particular
+                            topic. These
+                            are deep reads with a formal tone, combining expert knowledge and research data to argue for
+                            a
+                            solution or
+                            recommendation. This allows the reader to fully understand the problem and solution, then
+                            make a
+                            decision.
+                        </p>
+                        <p>In order for us to help, we will need you to answer the following questions.
+                            Please be specific in your answers.
+                        </p>
+                        <div class="field">
+                            <input type="text" name="White Paper Name" id='wpTopic' placeholder="Infinea">
+                            <label for="wpTopic">What is the topic?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Background Info" id="wpBackground" placeholder="You felon">
+                            <label for="background">What background information can you provide?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" id='wpSolution' placeholder="Tequila">
+                            <label for="wpSolution">What is the solution?</label>
+                        </div>
+                        <label class="text-left dateLabel">Delivery Date:</label>
+                        <input type="text" class="datetime" id="wpDeliveryDate" name="wpDeliveryDate"
+                            placeholder="Not Tomorrow">
+
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="wpBack">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="wpSubmitLoad">
+                            <div class="spinner-border" id='wpSubmitLoading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="wpSubmitError">Error on Submitting, Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont5">
+                <div class="row justify-content-end sideRow" id=''>
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='eventsTitle'>Case Study</h3>
+                        <p>In order for us to help, we will need you to answer the following questions.
+                            Please be specific in your answers.
+                        </p>
+                        <div class="field">
+                            <input type="text" name="Case Study Name" id='csCompany' placeholder="Samsung">
+                            <label for="company">What company will be mentioned?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="Case Study Industry" id='csIndustry' placeholder="Entertainment">
+                            <label for="industry">Which industry is this specific to?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Case Study Problem" id='csProblem' placeholder="You">
+                            <label for="problem">What problem were they experiencing?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Case Study Motive" id='csMotive' placeholder="Speed things up">
+                            <label for="motive">What was their motive to find a solution?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Case Study Solution" id="csSolution"
+                                placeholder="Gas, Liquid or Solid?">
+                            <label for="solution">What solution did we provide?</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Case Study Result" id="csResult" placeholder="Good Times">
+                            <label for="result">What was the result?</label>
+                        </div>
+
+                        <label class="text-left dateLabel" for="">Delivery Date:</label>
+                        <input type="text" class="datepicker" id="csDeliveryDate" name="csDeliveryDate" id=''
+                            placeholder="Not Tomorrow">
+
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="csBack">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                        <div class="d-flex justify-content-center" id="csSubmitLoad">
+                            <div class="spinner-border" id='csSubmitLoading' role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="submitError" id="csSubmitError">Error on Submitting Contact
+                                Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont6">
+                <div class="row justify-content-end sideRow" id=''>
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='eventsTitle'>Edits</h3>
+                        <p>Please clarify the piece that needs to be updated.
+                        </p>
+                        <div class="field">
+                            <input type="text" name="editProjectName" id='editName' placeholder="Infinea">
+                            <label for="editName">Project Name</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Edit Project Description" id='editDescription'
+                                placeholder="Infinea">
+                            <label for="editDescription">Description</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Edit Link" id='editLink' placeholder="Myspace.com">
+                            <label for="editLink">Link</label>
+                        </div>
+                        <label class="text-left dateLabel" for="">Upload Example:</label>
+                        <input type="file" class="file" name='Edit File' id='editFile' placeholder="selfie.jpg">
+                        <label class="text-left dateLabel" for="">Delivery Date:</label>
+                        <input type="text" class="datepicker" id="editDeliveryDate" name="editDeliveryDate"
+                            placeholder="Not Tomorrow">
+
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="editBack">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                      <div class="d-flex justify-content-center" id="editsSubmitLoad">
+                          <div class="spinner-border" id='editsSubmitLoading' role="status">
+                              <span class="sr-only">Loading...</span>
+                          </div>
+                          <span class="submitError" id="editsSubmitError">Error on Submitting, Contact
+                              Marketing</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont7">
+                <div class="row justify-content-end sideRow">
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='eventsTitle'>Other</h3>
+                        <p>Please tell us a little about the project.
+                        </p>
+                        <div class="field">
+                            <input type="text" name="writingProjectName" id='writingProject'
+                                placeholder="Example Project Name">
+                            <label for="projectname">Project Name</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Writing Description" id='otherDescription'
+                                placeholder="Project Description">
+                            <label for="otherDescription" class="">Description</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="projectName" id='otherGoal' placeholder="Promote">
+                            <label for="goal" class="">Goal</label>
+                        </div>
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="otherBack1">Back</button>
+                            <button class="col-5 btn btn-primary" id="otherNext1">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container sideContainer" id="writeCont8">
+                <div class="row justify-content-end sideRow" id=''>
+                    <div class="col-md-7  inputCol">
+                        <h3 class="formTitle" id='eventsTitle'>Other continued</h3>
+                        <p>To fully understand, we will need you to answer the following
+                        </p>
+                        <div class="field">
+                            <input type="text" name="Writing Industry" id='writingIndustry' placeholder="Food">
+                            <label for="industry" class="">Industry</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Highlighted Products for Writing" id='writingHighlighted'
+                                placeholder="Infinea">
+                            <label for="writingHighlighted" class="">Highlighted Products</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="Writing Link" id='writingLink' placeholder="Myspace.com">
+                            <label for='writingLink' class="">Link</label>
+                        </div>
+                        <div class="field">Ï
+                            <textarea name="writing comments" name="Writing Additional Comments" id="" cols="30"
+                                rows="3" placeholder="Additional Comments"></textarea>
+                        </div>
+                        <label class="text-left dateLabel" for="">Upload Example:</label>
+                        <input type="file" name="Writing File" class="file" id='wFile' placeholder="selfie.jpg">
+                        <label class="text-left dateLabel" for="">Delivery Date:</label>
+                        <input type="text" class="datepicker" id="writingDeliveryDate" name="writingDeliveryDate"
+                            placeholder="Not Tomorrow">
+                        <div class="row buttonSplit">
+                            <button class="col-5 btn btn-primary" id="otherBack2">Back</button>
+                            <input type="Submit" class="col-5 btn btn-primary" value="Submit">
+                        </div>
+                      <div class="d-flex justify-content-center" id="otherSubmitLoad">
+                          <div class="spinner-border" id='otherSubmitLoading' role="status">
+                              <span class="sr-only">Loading...</span>
+                          </div>
+                          <span class="submitError" id="otherSubmitError">Error on Submitting,, Contact
+                              Marketing</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <!--Bootstrap-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="js/build-dist.js"></script>
+</body>
+
+</html>

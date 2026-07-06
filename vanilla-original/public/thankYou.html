@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="/images/icons/android-chrome-192x192.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/android-chrome-192x192.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/android-chrome-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon.png">
+    <script src="/public/lodash.js"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS-->
+    <link href="css/build.css" rel="stylesheet">
+
+    <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <!--Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://use.typekit.net/vcs3wfi.css" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.js"></script>
+    <title>Marketing Request Portal</title>
+</head>
+
+<body>
+
+    <section class="pwsection thankyou" id="thankyou">
+        <div class="container pwsection__cont">
+            <div class="row pwsection__row">
+                <div class="col-12 pwsection__col">
+                    <div class="floaty thankYou">
+                        <img src="https://res.cloudinary.com/ipcmobile/image/upload/v1/logos/infinite-peripherals-logo-stacked-inverted.svg"
+                            alt="logo" id="logo">
+                        <p class="submitted" id="submitted">Your request has been submitted.
+                            The marketing team will review your request and contact you shortly with
+                            confirmation.</p>
+                        <!-- <iframe
+                                src="https://docs.google.com/forms/d/e/1FAIpQLSdZx_mZzdj3gm6iDfK3Rk3YhfHDtGqmsz8GjN_Eu---uqP3BA/viewform?embedded=true"
+                                width="640" height="434" frameborder="0" marginheight="0"
+                                marginwidth="0">Loading…</iframe> -->
+                        <form class="feedback"
+                            action="https://docs.google.com/forms/d/e/1FAIpQLSdZx_mZzdj3gm6iDfK3Rk3YhfHDtGqmsz8GjN_Eu---uqP3BA/formResponse"
+                            target="_self" id="bootstrapForm" method="POST">
+                            <!-- Field type: "paragraph" id: "1402199455" -->
+                            <div class="field">
+                                <textarea id="135110706" name="entry.135110706" class="form-control"
+                                    placeholder="Please give feedback or ideas to improve!"></textarea>
+                            </div>
+                            <input type="hidden" name="fvv" value="1">
+                            <input type="hidden" name="fbzx" value="-6041845502585310510">
+                            <input type="hidden" name="pageHistory" value="0">
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </form>
+                        <div id="googleSubmit" class="d-none">
+                            <img class="feedbackSubmit "
+                                src="https://res.cloudinary.com/ipcmobile/image/upload/v1/icons/completed-checkmark.svg"
+                                alt="checkmark complete">
+                        </div>
+
+                        <div class="row buttonSplit">
+                            <button class='col-5 btn btn-primary' id="startover">Restart</button>
+                            <button class="col-5 btn btn-primary" id="logOut">Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Bootstrap-->
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
+        integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="js/build-dist.js"></script>
+</body>
+
+</html>

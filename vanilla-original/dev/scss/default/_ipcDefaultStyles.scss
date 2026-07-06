@@ -1,0 +1,618 @@
+/*
+
+-------- File Contents --------
+  1 - Imports
+  2 - Silent Classes
+  3 - Colors
+  4 - Mixins
+  5 - Default stylings
+  6 - Animations
+  7 - Client Slider (SlickSlider)
+
+*/
+
+// 1 - Imports
+@import "https://use.typekit.net/vcs3wfi.css";
+@import "https://fonts.googleapis.com/css?family=Lato:300,400";
+
+// 2 - Silent Classes
+%din {
+  font-family: "din-2014", sans-serif !important;
+}
+%lato {
+  font-family: 'Lato', sans-serif !important;
+}
+
+%container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+// 3 - Colors
+$ipc-brandgreen: #84d600;
+$ipc-healthcare: #03d5ff;
+$ipc-hospitality: #fff200;
+$ipc-hospitality2: #e3d800;
+$ipc-retail: #eb2300;
+$ipc-supplychain: #ff5900;
+$ipc-travel: #8347fc;
+$ipc-gray: #b5b5b5; // 'merica!
+
+
+// 4 - Mixins
+
+/* Prefix mixin - https://css-tricks.com/snippets/sass/mixin-prefix-properties */
+// Mixin to prefix several properties at once
+// @example - @include prefix((transform: translate(240%, 0)), webkit moz o ms);
+// @author Hugo Giraudel
+// @param {Map} $declarations - Declarations to prefix
+// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// 5 - Default stylings
+html, body {
+  font-size: 16px; //Root Font Size and Default Web Size
+}
+
+body {
+  @extend %lato;
+  color: #242424;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6, {
+  @extend %din;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+p {
+  line-height: 1.5;
+  &.font-light {
+    font-weight: 300;
+  }
+  &.higher-em {
+    font-size: 1.125rem;
+  }
+  &.lower-em {
+    font-size: 0.875rem;
+  }
+}
+
+@mixin bgc($color) {
+  background-color: $color;
+  border: darken($color, 10%);
+  &:hover {
+    background-color: darken($color, 10%);
+    border: darken($color, 12%);
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.1rem darken($color, 10%);
+  }
+  &-inverse {
+    background-color: transparent;
+    color: $color;
+    border: 0;
+  }
+}
+
+.btn {
+  @extend %din;
+  cursor: pointer;
+  letter-spacing: -0.5px;
+  border-radius: 7px;
+  border: 0 !important;
+  &-primary {
+    color: #ffffff;
+    padding: .25rem 1rem;
+    text-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    background-color: $ipc-brandgreen;
+    &:hover, &:active {
+      background-color: darken($ipc-brandgreen, 10%) !important;
+      box-shadow: 0 0 0 0.2rem rgba(132, 214, 0, 0.44);
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(132, 214, 0, 0.44);
+    }
+    &-inverse {
+      color: $ipc-brandgreen;
+      &:hover {
+        color: darken($ipc-brandgreen, 10%);
+      }
+    }
+  }
+  &-secondary {
+    background-color: #f6f6f6;
+    color: #000000;
+    font-size: 0.8rem;
+    &:hover, &:active {
+      background-color: darken(#f6f6f6, 10%) !important;
+      border: 0 !important;
+      color: #242424 !important;
+    }
+    &-inverse {
+      color: #f6f6f6;
+      &:hover {
+        color: darken(#f6f6f6, 10%);
+      }
+    }
+  }
+  .arrow {
+    width: 16px;
+    height: 15px;
+  }
+}
+
+.badge {
+  &-dark {
+    background-color: #242424;
+  }
+}
+
+.avatar {
+  border-radius: 1rem;
+  border: 2px solid #ffffff;
+  @media (min-width: 768px) {
+    border-radius: .25rem;
+    border: 0;
+  }
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  @include prefix((user-select: none), webkit moz ms);
+
+  &:hover input[type=checkbox] ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  input[type=checkbox]:checked ~ .checkmark {
+    background-color: $ipc-brandgreen;
+  }
+  input[type=checkbox]:checked ~ .checkmark:after {
+    display: block;
+  }
+  .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    @include prefix((transform: rotate(45deg)), webkit moz o ms);
+  }
+}
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: .25rem;
+  background-color: #eee;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+
+.box-shadow {
+  @include prefix((box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.2)), webkit moz o ms);
+  
+}
+
+.absolute-middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+// 6 - Animations
+/* DEFAULT VALUES */
+.icon-animation {
+  &.menu {
+    @extend %container;
+    div {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: $ipc-brandgreen;
+      border-radius: 10px;
+      left: 0;
+      &:nth-child(2) {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &:first-of-type {
+        top: 25%;
+      }
+      &:last-of-type {
+        top: 70%;
+      }
+    }
+  }
+  &.plus {
+    @extend %container;
+    div {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: $ipc-brandgreen;
+      border-radius: 10px;
+      left: 0;
+      top: 50%;
+      &:nth-child(2) {
+        @include prefix((transform: rotate(90deg)), webkit moz o ms);
+      }
+      &:first-of-type, &:last-of-type {
+        width: 30%;
+      }
+      &:last-of-type {
+        @include prefix((transform: translate(240%, 0)), webkit moz o ms)
+      }
+    }
+  }
+  &.search {
+    @extend %container;
+
+    #search-icon {
+      margin: -3px 0 0 -4px;
+      fill: #ffffff;
+    }
+    input[type='text'] {
+      width: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+/* FORWARD ANIMATION VALUES */
+.active {
+  .icon-animation {
+    &.menu {
+      div {
+        &:nth-child(2) {
+          @include prefix((animation: closeBarForwardTwo 1s ease-in-out), webkit moz o ms);
+          @include prefix((transform: rotate(315deg)), webkit moz o ms);
+          margin: -2% 0 0 -50%;
+          @include prefix((transition: rotate 1s ease-in-out), webkit moz o ms);
+        }
+        &:first-of-type, &:last-of-type {
+          width: 30%;
+          @include prefix((transition: rotate 1s ease-in-out), webkit moz o ms);
+        }
+        &:first-of-type {
+          @include prefix((animation: closeBarForwardOne 1s), webkit moz o ms);
+          @include prefix((transform: rotate(225deg) translate(-240%, 100%)), webkit moz o ms);
+
+        }
+        &:last-of-type {
+          @include prefix((animation: closeBarForwardThree 1s), webkit moz o ms);
+          @include prefix((transform: rotate(45deg) translate(-65%, -570%)), webkit moz o ms);
+        }
+      }
+    }
+    &.plus {
+      @extend %container;
+      div {
+        &:nth-child(2) {
+          @include prefix((plusBarForwardTwo 1s ease), webkit moz o ms);
+          @include prefix((transform: rotate(-45deg)), webkit moz o ms);
+        }
+        &:first-of-type, &:last-of-type {
+          width: 30%;
+        }
+        &:first-of-type{
+          @include prefix((animation: plusBarForwardOne 0.9s ease-in-out), webkit moz o ms);
+          @include prefix((transform: rotate(225deg) translate(-200%, 250%)), webkit moz o ms);
+        }
+        &:last-of-type {
+          @include prefix((animation: plusBarForwardThree 0.9s ease-in-out), webkit moz o ms);
+          @include prefix((transform: rotate(225deg) translate(30%, 250%)), webkit moz o ms);
+        }
+      }
+    }
+    &.search {
+      width: auto;
+    }
+  }
+}
+/* BACKWARD ANIMATION VALUES */
+.inactive {
+  .icon-animation {
+    &.menu {
+      div {
+        &:first-of-type {
+          @include prefix((animation: closeBarBackwardOne 1s ease-in-out), webkit moz o ms);
+        }
+
+        &:nth-child(2) {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          @include prefix((animation: closeBarBackwardTwo 1s ease-in-out), webkit moz o ms);
+        }
+
+        &:last-of-type {
+          @include prefix((animation: closeBarBackwardThree 1s ease-in-out), webkit moz o ms);
+        }
+      }
+    }
+    &.plus {
+      @extend %container;
+      div {
+        &:nth-child(2) {
+          @include prefix((animation: plusBarBackwardTwo 1s ease), webkit moz o ms);
+        }
+        &:first-of-type, &:last-of-type {
+          width: 30%;
+        }
+        &:first-of-type{
+          @include prefix((animation: plusBarBackwardOne 0.9s ease-in-out), webkit moz o ms);
+        }
+        &:last-of-type {
+          @include prefix((animation: plusBarBackwardThree 0.9s ease-in-out), webkit moz o ms);
+        }
+      }
+    }
+  }
+}
+
+/* KEYFRAME VALUES */
+// Close Fordward Animation
+@include keyframes(closeBarForwardOne) {
+  0% {
+    width: 100%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+
+  }
+  30% {
+    width: 30%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  100% {
+    width: 30%;
+    @include prefix((transform: rotate(225deg) translate(-240%, 100%)), webkit moz o ms);
+  }
+}
+@include keyframes(closeBarForwardTwo) {
+  0% {
+    @include prefix((transform: rotate(0deg)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(315deg)), webkit moz o ms);
+  }
+}
+@include keyframes(closeBarForwardThree) {
+  0% {
+    width: 100%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  30% {
+    width: 30%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  100% {
+    width: 30%;
+    @include prefix((transform: rotate(45deg) translate(-65%, -570%)), webkit moz o ms);
+  }
+}
+// Close Backward Animation
+@include keyframes(closeBarBackwardOne) {
+  0% {
+    width: 30%;
+    @include prefix((transform: rotate(225deg) translate(-240%, 100%)), webkit moz o ms);
+  }
+  30% {
+    width: 30%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  100% {
+    width: 100%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+}
+@include keyframes(closeBarBackwardTwo) {
+  0% {
+    margin: -2% 0 0 -50%;
+    @include prefix((transform: rotate(315deg)), webkit moz o ms);
+  }
+  100% {
+    margin: -3% 0 0 -50%;
+    @include prefix((transform: rotate(0deg)), webkit moz o ms);
+  }
+}
+@include keyframes(closeBarBackwardThree) {
+  0% {
+    width: 30%;
+    @include prefix((transform: rotate(45deg) translate(-65%, -570%)), webkit moz o ms);
+  }
+  30% {
+    width: 30%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  100% {
+    width: 100%;
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+}
+// Plus Fordward Animation
+@include keyframes(plusBarForwardOne) {
+  0% {
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+  50% {
+    @include prefix((transform: rotate(150deg) translate(-300%, 400%)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(225deg) translate(-200%, 250%)), webkit moz o ms);
+  }
+}
+@include keyframes(plusBarForwardTwo) {
+  0% {
+    @include prefix((transform: rotate(90deg)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(-45deg)), webkit moz o ms);
+  }
+}
+@include keyframes(plusBarForwardThree) {
+  0% {
+    @include prefix((transform: rotate(0deg) translate(240%, 0)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(225deg) translate(30%, 250%)), webkit moz o ms);
+  }
+}
+// Plus Backward Animation
+@include keyframes(plusBarBackwardOne) {
+  0% {
+    @include prefix((transform: rotate(225deg) translate(-200%, 250%)), webkit moz o ms);
+  }
+  50% {
+    @include prefix((transform: rotate(150deg) translate(-300%, 400%)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(0deg) translate(0, 0)), webkit moz o ms);
+  }
+}
+@include keyframes(plusBarBackwardTwo) {
+  0% {
+    @include prefix((transform: rotate(-45deg)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(90deg)), webkit moz o ms);
+  }
+}
+@include keyframes(plusBarBackwardThree) {
+  0% {
+    @include prefix((transform: rotate(225deg) translate(30%, 250%)), webkit moz o ms);
+  }
+  100% {
+    @include prefix((transform: rotate(0deg) translate(240%, 0)), webkit moz o ms);
+  }
+}
+
+// 7 - Client Slider (SlickSlider)
+/* Slider */
+.slick-slide {
+    margin: 0px 20px;
+}
+.slick-slide img {
+    width: 75%;
+    margin: 0 auto;
+}
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    @include prefix((user-select: none, touch-action: pan-y), webkit moz ms)
+    -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus {
+    outline: none;
+}
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand;
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o)
+}
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after {
+    display: table;
+    content: '';
+}
+.slick-track:after {
+    clear: both;
+}
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+.slick-slide {
+    display: none;
+    float: left;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide {
+    float: right;
+}
+.slick-slide img {
+    display: block;
+}
+.slick-slide.slick-loading img {
+    display: none;
+}
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+.slick-initialized .slick-slide {
+    display: block;
+}
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
